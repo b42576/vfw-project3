@@ -78,6 +78,8 @@ window.addEventListener("DOMContentLoaded", function(){
                 
         }
     }
+    // not saving to localstorage.
+    // submitting my work to find out why later on the next project
     function storeData(key){
         if(!key){
             var id = Math.floor(Math.random()*100000001);
