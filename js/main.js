@@ -79,8 +79,14 @@ window.addEventListener("DOMContentLoaded", function(){
         }
     }
     function storeData(key){
-        var id = Math.floor(Math.random()*100000001);
+        if(!key){
+            var id = Math.floor(Math.random()*100000001);
+        }else{
+            id=key;
+        }
+        
         // get form values // store in objet
+        getSelectedRadio();
         // object properties contain array with the form label and input values
         var item = {};
             item.productBrand       = ["Brand:", $('productBrand').value];
@@ -89,7 +95,7 @@ window.addEventListener("DOMContentLoaded", function(){
             item.productRating      = ["Rating:", $('productRating').value];
             item.location           = ["Location:", $('location').value];
             item.price              = ["Price:", $('price').value];
-            item.tax                = ["Taxable?", taxValue];
+            item.tax                = ["Taxable:", taxValue];
             item.datePurchased      = ["Date:", $('datePurchased').value];
             item.size               = ["Size:", $('size').value];
             item.sizeType           = ["Size Type:", $('sizeType').value];
@@ -131,6 +137,7 @@ window.addEventListener("DOMContentLoaded", function(){
         editLink.href = "#";
         editLink.key = key;
         var editText = "Edit Item";
+        editLink.addEventListener("click",editItem);
         editLink.innerHTML = editText;
         linksLi.appendChild(editLink);
         
@@ -141,6 +148,7 @@ window.addEventListener("DOMContentLoaded", function(){
         deleteLink.href = "#";
         deleteLink.key = key;
         var deleteText = "Delete Item";
+        deleteLink.addEventListener("click",deleteItem);
         deleteLink.innerHTML = deleteText;
         linksLi.appendChild(deleteLink);
     }
@@ -173,6 +181,17 @@ window.addEventListener("DOMContentLoaded", function(){
         editSubmit.addEventListener("click", validate);
         editSubmit.key = this.key;
 
+    }
+    
+    function deleteItem(){
+        var ask = confirm("Are you sure you want to delete this item?");
+        if (ask){
+            localStorage.removeItem(this.key);
+            alert("Item was deleted!");
+            window.location.reload();
+        }else{
+            alert("Item was NOT deleted.");
+        }
     }
     function clearLocal(){
         if(localStorage.length === 0) {
@@ -250,11 +269,11 @@ window.addEventListener("DOMContentLoaded", function(){
     makeStores();
     
     var displayLink = $('displayLink');
-    displayLink.addEventLister("click", getData);
+    displayLink.addEventListener("click", getData);
     var clearLink = $('clear');
-    clearLink.addEventLister("click", clearLocal);
+    clearLink.addEventListener("click", clearLocal);
     var save = $('submit');
-    save.addEventLister("click", validate);
+    save.addEventListener("click", validate);
     
     
     
