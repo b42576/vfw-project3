@@ -183,12 +183,69 @@ window.addEventListener("DOMContentLoaded", function(){
         }
     }
     function validate(){
+        var getProductBrand = $('productBrand');
+        var getProductName = $('productName');
+        var getLocation = $('location');
+        var getPrice = $('price');
+        var getSizeTypes = $('sizeType');
         
+        errMsg.innerHTML = "";
+            getProductBrand.style.border = "1px dashed black";
+            getProductName.style.border = "1px dashed black";
+            getLocation.style.border = "1px dashed black";
+            getPrice.style.border = "1px dashed black";
+            getSizeTypes.style.border = "1px dashed black";
+         
+        
+        var errorMessages = [];
+        
+        if(getProductBrand.value === ""){
+            var brandError = "Please enter a product brand.";
+            getProductBrand.style.border = "1px dashed red";
+            errorMessages.push(brandError);
+        }
+
+        if(getProductName.value === ""){
+            var nameError = "Please enter a product name.";
+            getProductName.style.border = "1px dashed red";
+            errorMessages.push(nameError);
+        }
+        
+        if(getLocation.value === "--Select A Store--"){
+            var locationError = "Please select a store";
+            getLocation.style.border = "1px dashed red";
+            errorMessages.push(locationError);
+        }
+        if (! (/^\d*(?:\.\d{0,2})?$/.test(getPrice))) {
+            var getPriceError = "Please enter a valid price";
+            getPrice.style.border = "1px dashed red";
+            errorMessages.push(getPriceError);
+        }
+        
+        if(getSizeTypes.value === "--Select A Size Type--"){
+            var sizeTypeError = "Please select a store";
+            getSizeTypes.style.border = "1px dashed red";
+            errorMessages.push(sizeTypeError);
+        }
+        
+        if(errorMessages.length > 0){
+            for(var i=0,j=errorMessages.length; i<j;i++){
+                var txt = document.createElement('li');
+                txt.innerHTML = errorMessages[i];
+                errMsg.appendChild(txt);
+            }
+            e.preventDefault();
+            return false;
+        }else{
+            storeData();
+        }
+
     }
     var sizeTypes = ["--Select A Size Type--","Count","Each","Pack","Fluid Ounce","Ounce(s)","Pound(s)"],
             stores = ["--Select A Store--","Shop Rite","Acme","Super Fresh","Giant","Target","Walmart"],
             sizeValue,
-            taxValue;
+            taxValue,
+            errMsg = $('errors');
     makeTypes();
     makeStores();
     

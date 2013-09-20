@@ -30,16 +30,8 @@ Project 3
                     <li><label for="productName">Product Name</label><input type="text" name="productName" id="productName"></li>
                 <li><label for="productDescription">Product Description</label><textarea name="productDescription" id="productDescription"></textarea><br />
                 <li><label for="productRating">Product Rating</label><input type="range" name="productRating" min="1" max="5" id="productRating"><br />
-                <li id="locations"><label for="location">Location/Store</label>
-                <select name="location" id="location">
-                    <option value="shoprite">Shop Rite</option>
-                    <option value="acme">Acme</option>
-                    <option value="superfresh">Super Fresh</option>
-                    <option value="giant">Giant</option>
-                    <option value="target">Target</option>
-                    <option value="walmart">Walmart</option>
-                </select></li>
-                    <li><label for="price">Price</label><br />
+                <li id="locations"><label for="location">Location/Store</label></li>
+                    <li><label for="price">Price</label>
                         $<input type="text" name="price" id="price" size="6"></li>
                     <li>Tax?
                     <input type="radio" name="tax" value="Yes" id="tax"><label for="tax">Yes</label>
@@ -49,14 +41,7 @@ Project 3
                 <li><label for="size">Size</label>
                     <input type="text" name="size" id="size"></li>
                 <li id="sizeTypes"><label for="sizeType">Size Type</label>
-                <select name="sizeType" id="sizeType">
-                    <option value="ct">count</option>
-                    <option value="ea">each</option>
-                    <option value="pk">pack</option>
-                    <option value="fl oz">fluid ounce</option>
-                    <option value="oz">ounce(s)</option>
-                    <option value="lbs">pound(s)</option>
-                </select></li>
+                </li>
                 </ul>
                 <input type="hidden" name="formType" id="formType" value="add">
                 <button id="submit">Add Item</button><br />
